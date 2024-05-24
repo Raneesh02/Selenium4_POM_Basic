@@ -25,6 +25,7 @@ public class Homepage extends BasePage {
 
     public Homepage(WebDriver driver) {
         super(driver);
+        driver.get(url);
     }
 
     public void openCategories(){
