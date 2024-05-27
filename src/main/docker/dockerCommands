@@ -1,0 +1,2 @@
+ docker compose -f docker-compose-v3.yml up --scale firefox=10 -d
+ docker compose -f docker-compose-v3.yml down
