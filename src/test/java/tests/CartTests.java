@@ -7,14 +7,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.FilterSideBar;
-import pages.Homepage;
+import pages.web.WebHomepage;
 import pages.ProductDetailPage;
 
 public class CartTests extends BaseTest {
 
     @Test
     public void hammerCartTest(){
-        Homepage homepage = new Homepage(DriverManager.getDriver());
+        WebHomepage homepage = new WebHomepage(DriverManager.getDriver());
         FilterSideBar filterBar = homepage.getFilterBar();
         filterBar.selectFilterCategory("Hammer");
         ProductDetailPage productDetailPage = homepage.selectProduct(1);
