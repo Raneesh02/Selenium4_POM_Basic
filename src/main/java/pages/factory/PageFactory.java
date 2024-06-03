@@ -3,23 +3,18 @@ package pages.factory;
 
 import org.openqa.selenium.WebDriver;
 import pages.interfaces.HomePage;
-import pages.mweb.mWebHomePage;
-import pages.web.WebHomepage;
 import utilities.PropertyHandler;
 
-public class PageFactory {
+public abstract class PageFactory {
 
-    public static HomePage getHomePage(WebDriver webDriver){
+    public static PageFactory getPageFactory(){
         String platform = PropertyHandler.platform;
-        if(platform.equalsIgnoreCase("web")){
-            return new WebHomepage(webDriver);
-        }
-        else if(platform.equalsIgnoreCase("mweb")){
-            return new mWebHomePage(webDriver);
-        }
-        else{
-            throw new IllegalArgumentException("wrong platform value "+ platform);
-        }
+        return switch (platform){
+            case "web" -> new WebPageFactory();
+            case "mweb" -> new MWebPageFactory();
+            default -> throw new IllegalArgumentException("Platform " + platform + " is not correct value");
+        };
     }
 
+    abstract public HomePage getHomePage(WebDriver driver);
 }
