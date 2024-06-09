@@ -1,42 +1,36 @@
-package pages;
+package pages.web;
 
 import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pages.FilterSideBar;
+import pages.ProductDetailPage;
+import pages.interfaces.HomePage;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Homepage extends BasePage {
+public class WebHomepage extends BasePage implements HomePage {
+    protected By homeMenuOptCss=By.cssSelector("[data-test='nav-home']");
+    protected By categoriesMenuOptCss=By.cssSelector("[data-test='nav-categories']");
+    protected By contactMenuOptCss=By.cssSelector("[data-test='nav-contact']");
+    protected By signInMenuOptCss=By.cssSelector("[data-test='nav-sign-in']");
+    protected By languageMenuOptCss=By.cssSelector("[data-test='language']");
+    protected By categoriesDdnOtpCss=By.cssSelector("[class*='dropdown-menu'][aria-label='nav-categories'] li");
+    protected By brandLogoCss=By.cssSelector("[class='navbar-brand']");
+    protected By footerCss=By.cssSelector("app-footer");
+    protected By productNameCss=By.cssSelector("[data-test='product-name']");
+    protected By productPriceCss=By.cssSelector("[data-test='product-price']");
+    protected By noResultsCss=By.cssSelector("[data-test='no-results']");
 
-    By homeMenuOptCss=By.cssSelector("[data-test='nav-home']");
-    By categoriesMenuOptCss=By.cssSelector("[data-test='nav-categories']");
-    By contactMenuOptCss=By.cssSelector("[data-test='nav-contact']");
-    By signInMenuOptCss=By.cssSelector("[data-test='nav-sign-in']");
-    By languageMenuOptCss=By.cssSelector("[data-test='language']");
-
-    By categoriesDdnOtpCss=By.cssSelector("[class*='dropdown-menu'][aria-label='nav-categories'] li");
-    By brandLogoCss=By.cssSelector("[class='navbar-brand']");
-    By footerCss=By.cssSelector("app-footer");
-    By productNameCss=By.cssSelector("[data-test='product-name']");
-    By productPriceCss=By.cssSelector("[data-test='product-price']");
-    By noResultsCss=By.cssSelector("[data-test='no-results']");
-
-
-    public Homepage(WebDriver driver) {
-        super(driver);
-    }
-
-    public void openCategories(){
+    public void openCategories() {
         waitAndClick(categoriesMenuOptCss);
     }
 
-    public List<String> getCategoriesList(){
-        waitForVisible(categoriesDdnOtpCss);
-        List<WebElement> elements = driver.findElements(categoriesDdnOtpCss);
-        return elements.stream().map(e -> e.getText()).collect(Collectors.toList());
+    public WebHomepage(WebDriver driver) {
+        super(driver);
     }
 
     public void validateHeader(){
@@ -79,4 +73,9 @@ public class Homepage extends BasePage {
         return isDisplayed(noResultsCss);
     }
 
+    public List<String> getCategoriesList(){
+        waitForVisible(categoriesDdnOtpCss);
+        List<WebElement> elements = driver.findElements(categoriesDdnOtpCss);
+        return elements.stream().map(e -> e.getText()).collect(Collectors.toList());
+    }
 }
