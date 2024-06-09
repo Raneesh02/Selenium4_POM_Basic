@@ -7,8 +7,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.FilterSideBar;
-import pages.web.WebHomepage;
 import pages.ProductDetailPage;
+import pages.web.WebHomepage;
+import testDataBuilders.Product;
 
 public class CartTests extends BaseTest {
 
@@ -33,6 +34,15 @@ public class CartTests extends BaseTest {
         CartPage cartPage = addToCartFacade.addProductCategoryToCart("Hammer", 2);
         cartPage.removeProduct();
         Assert.assertFalse(cartPage.isProceedPresent(),"Proceed button should not be present");
+    }
+
+    @Test
+    public void testDataUtil2(){
+        Product product1 = new Product.ProductBuilder().setCategory("Hammer").setName("Thor Hammer").setQty(3).build();
+        Product product2 = new Product.ProductBuilder().setCategory("Pliers").setName("Slip Joint Pliers").setQty(3).build();
+        AddToCartFacade addToCartFacade = new AddToCartFacade(DriverManager.getDriver());
+        addToCartFacade.addProductToCart(product1);
+        addToCartFacade.addProductToCart(product2);
     }
 
 }

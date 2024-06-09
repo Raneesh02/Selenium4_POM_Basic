@@ -12,6 +12,7 @@ public abstract class BasePage {
     protected String url;
     protected WebDriver driver;
     WebDriverWait webDriverWait;
+    protected By homeMenuOptCss=By.cssSelector("[data-test='nav-home']");
 
     public BasePage(WebDriver driver){
         this.driver = driver;
