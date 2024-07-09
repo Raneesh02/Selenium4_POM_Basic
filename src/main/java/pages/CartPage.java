@@ -3,6 +3,8 @@ package pages;
 import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.interfaces.HomePage;
+import pages.web.WebHomepage;
 
 public class CartPage extends BasePage {
 
@@ -30,6 +32,11 @@ public class CartPage extends BasePage {
     public void removeProduct(){
         waitAndClick(removeProductBtnCss);
         waitForInVisible(removeProductBtnCss);
+    }
+
+    public HomePage goToHomePage(){
+        waitAndClick(homeMenuOptCss);
+        return new WebHomepage(driver);
     }
 
 }
