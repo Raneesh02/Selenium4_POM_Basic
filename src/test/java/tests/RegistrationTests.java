@@ -4,6 +4,7 @@ import Base.BaseTest;
 import Base.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.RegistrationFluentPage;
 import pages.RegistrationPage;
 
 public class RegistrationTests extends BaseTest {
@@ -16,6 +17,13 @@ public class RegistrationTests extends BaseTest {
         registrationPage.enterLastName("Uchiha");
         registrationPage.submitForm();
         Assert.assertTrue(registrationPage.isDobErrorDisplayed(),"Dob error is not displayed");
+    }
+
+    @Test
+    public void testDobErrorFluent(){
+        RegistrationFluentPage registrationFluentPage = new RegistrationFluentPage(DriverManager.getDriver());
+        registrationFluentPage.navigateByUrl().enterFirstName("Itachi").enterLastName("Uchiha").submitForm();
+        Assert.assertTrue(registrationFluentPage.isDobErrorDisplayed(),"Dob error is not displayed");
     }
 
     @Test
