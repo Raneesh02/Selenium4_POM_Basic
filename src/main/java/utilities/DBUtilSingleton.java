@@ -9,7 +9,7 @@ public class DBUtilSingleton {
 
     public static DBUtilSingleton dbUtilSingleton;
 
-    public static DBUtilSingleton getInstance(){
+    public static synchronized DBUtilSingleton getInstance(){
         if(dbUtilSingleton==null){
             System.out.println("Lazy Loading creating an instance of dbutil singleton");
             dbUtilSingleton=new DBUtilSingleton();
